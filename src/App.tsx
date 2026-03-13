@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import {
   Shield,
   Heart,
@@ -15,12 +15,7 @@ import {
   Star,
   Activity,
   ArrowUpRight,
-  CheckCircle2,
-  Send,
-  Car,
-  Home,
-  Briefcase,
-  Users
+  CheckCircle2
 } from 'lucide-react';
 import { cn } from './lib/utils';
 
@@ -302,7 +297,7 @@ const App: React.FC = () => {
                 icon: Star,
                 features: ['Planes de ahorro', 'Deducibilidad fiscal', 'Metas financieras']
               }
-            ].map((service, idx) => (
+            ].map((service) => (
               <div key={service.title} className="glass-card p-10 hover:border-blue-500/50 transition-all duration-300 group">
                 <div className="w-14 h-14 bg-blue-600/10 rounded-2xl flex items-center justify-center mb-8 border border-blue-500/20 group-hover:bg-blue-600 group-hover:shadow-lg group-hover:shadow-blue-600/40 transition-all">
                   <service.icon className="w-7 h-7 text-blue-400 group-hover:text-white transition-colors" />
@@ -360,27 +355,62 @@ const App: React.FC = () => {
               </div>
 
               <div className="bg-white/5 p-10 rounded-3xl border border-white/10 backdrop-blur-md">
-                <form className="space-y-6">
+                <form className="space-y-6" onSubmit={handleSubmit}>
                   <div>
                     <label className="text-[10px] uppercase font-black tracking-widest text-slate-500 mb-2 block">Nombre Completo</label>
-                    <input type="text" className="w-full px-5 py-4 bg-white/5 border border-white/10 rounded-xl focus:ring-1 focus:ring-blue-500 outline-none text-white transition-all" placeholder="Ej. Juan Pérez" />
+                    <input 
+                      type="text" 
+                      name="name"
+                      value={formData.name}
+                      onChange={handleInputChange}
+                      required
+                      className="w-full px-5 py-4 bg-white/5 border border-white/10 rounded-xl focus:ring-1 focus:ring-blue-500 outline-none text-white transition-all" 
+                      placeholder="Ej. Juan Pérez" 
+                    />
                   </div>
                   <div>
                     <label className="text-[10px] uppercase font-black tracking-widest text-slate-500 mb-2 block">WhatsApp de Contacto</label>
-                    <input type="tel" className="w-full px-5 py-4 bg-white/5 border border-white/10 rounded-xl focus:ring-1 focus:ring-blue-500 outline-none text-white transition-all" placeholder="618 ..." />
+                    <input 
+                      type="tel" 
+                      name="phone"
+                      value={formData.phone}
+                      onChange={handleInputChange}
+                      required
+                      className="w-full px-5 py-4 bg-white/5 border border-white/10 rounded-xl focus:ring-1 focus:ring-blue-500 outline-none text-white transition-all" 
+                      placeholder="618 ..." 
+                    />
                   </div>
                   <div>
                     <label className="text-[10px] uppercase font-black tracking-widest text-slate-500 mb-2 block">Servicio de Interés</label>
-                    <select className="w-full px-5 py-4 bg-slate-900 border border-white/10 rounded-xl focus:ring-1 focus:ring-blue-500 outline-none text-white transition-all">
-                      <option>Seguros de Vida</option>
-                      <option>Gastos Médicos</option>
-                      <option>Auto / Hogar</option>
-                      <option>Empresas</option>
+                    <select 
+                      name="service"
+                      value={formData.service}
+                      onChange={handleInputChange}
+                      className="w-full px-5 py-4 bg-slate-900 border border-white/10 rounded-xl focus:ring-1 focus:ring-blue-500 outline-none text-white transition-all"
+                    >
+                      <option value="">Selecciona un servicio</option>
+                      <option value="Seguros de Vida">Seguros de Vida</option>
+                      <option value="Gastos Médicos">Gastos Médicos</option>
+                      <option value="Auto / Hogar">Auto / Hogar</option>
+                      <option value="Empresas">Empresas</option>
                     </select>
                   </div>
-                  <button className="w-full py-5 bg-blue-600 hover:bg-blue-500 text-white font-black uppercase tracking-[0.3em] rounded-xl transition-all shadow-lg shadow-blue-600/20 active:scale-95">
-                    Enviar Consulta
+                  <button 
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="w-full py-5 bg-blue-600 hover:bg-blue-500 text-white font-black uppercase tracking-[0.3em] rounded-xl transition-all shadow-lg shadow-blue-600/20 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed"
+                  >
+                    {isSubmitting ? 'Enviando...' : 'Enviar Consulta'}
                   </button>
+                  {submitStatus === 'success' && (
+                    <motion.p 
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      className="text-xs text-emerald-400 text-center font-bold tracking-widest mt-4"
+                    >
+                      ¡REDIGIRIENDO A WHATSAPP!
+                    </motion.p>
+                  )}
                 </form>
               </div>
             </div>
