@@ -1,6 +1,16 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@theme {
+  --color-axa-blue: #003399;
+  --color-cyber-blue: #00f2ff;
+  --color-slate-950: #020617;
+  
+  --font-orbitron: "Orbitron", sans-serif;
+  --font-outfit: "Outfit", sans-serif;
+  --font-inter: "Inter", sans-serif;
+  
+  --shadow-cyber-glow: 0 0 20px rgba(0, 242, 255, 0.3);
+}
 
 @layer base {
   body {
