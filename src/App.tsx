@@ -78,10 +78,13 @@ const App: React.FC = () => {
         isScrolled ? "bg-slate-950/80 backdrop-blur-xl border-white/10 py-4" : "bg-transparent border-transparent py-6"
       )}>
         <div className="container mx-auto px-6 flex items-center justify-between">
-          <div className="flex items-center gap-3 group">
-            <div className="w-10 h-10 bg-blue-600 rounded-xl flex items-center justify-center shadow-lg shadow-blue-600/20 group-hover:scale-110 transition-transform">
-              <Shield className="w-6 h-6 text-white" />
+          <div className="flex items-center gap-4 group">
+            <div className="flex flex-col items-center">
+              <div className="bg-white p-1 rounded-sm shadow-sm">
+                <img src="/assets/logo_axa.png" alt="AXA Logo" className="h-6 w-auto" />
+              </div>
             </div>
+            <div className="w-px h-8 bg-white/20 hidden sm:block" />
             <div className="flex flex-col">
               <span className="text-xl font-orbitron font-black tracking-tighter text-white">VICOM</span>
               <span className="text-[10px] uppercase tracking-[0.3em] text-blue-400 font-bold leading-none">Seguros & Finanzas</span>
@@ -119,9 +122,28 @@ const App: React.FC = () => {
       </nav>
 
       {/* Hero Section */}
-      <section id="inicio" className="relative pt-40 pb-32 lg:pt-56 lg:pb-48 overflow-hidden">
+      <section id="inicio" className="relative min-h-[90vh] flex items-center pt-32 pb-32 overflow-hidden">
+        {/* Real Hyperrealistic Video/Background */}
+        <div className="absolute inset-0 z-0">
+          <video 
+            autoPlay 
+            muted 
+            loop 
+            playsInline
+            className="w-full h-full object-cover opacity-50 scale-105"
+          >
+            <source src="/assets/video_corporate_3.mp4" type="video/mp4" />
+            <img 
+              src="/assets/hero_family.png" 
+              alt="Family Protection" 
+              className="w-full h-full object-cover"
+            />
+          </video>
+          <div className="img-overlay-dark" />
+        </div>
+
         {/* Background Gradients */}
-        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-blue-600/10 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/2" />
+        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-blue-600/10 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/2 z-1" />
         <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-cyan-600/10 rounded-full blur-[100px] translate-y-1/2 -translate-x-1/2" />
         
         <div className="container mx-auto px-6 relative">
@@ -283,35 +305,44 @@ const App: React.FC = () => {
                 title: 'Seguros de Vida',
                 desc: 'La tranquilidad de saber que los tuyos estarán protegidos pase lo que pase.',
                 icon: Heart,
-                features: ['Protección familiar', 'Proyectos de ahorro', 'Fallecimiento accidental']
+                features: ['Protección familiar', 'Proyectos de ahorro', 'Fallecimiento accidental'],
+                img: '/assets/service_life.png'
               },
               {
                 title: 'Gastos Médicos Mayories',
                 desc: 'Acceso a la mejor atención médica en México y el extranjero con respaldo AXA.',
                 icon: Activity,
-                features: ['Red de hospitales', 'Cirugías especializadas', 'Atención 24/7']
+                features: ['Red de hospitales', 'Cirugías especializadas', 'Atención 24/7'],
+                img: '/assets/service_health.png'
               },
               {
                 title: 'Educación y Retiro',
                 desc: 'Asegura el futuro universitario de tus hijos o vive un retiro con total libertad.',
                 icon: Star,
-                features: ['Planes de ahorro', 'Deducibilidad fiscal', 'Metas financieras']
+                features: ['Planes de ahorro', 'Deducibilidad fiscal', 'Metas financieras'],
+                img: 'https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?auto=format&fit=crop&q=80&w=800'
               }
             ].map((service) => (
-              <div key={service.title} className="glass-card p-10 hover:border-blue-500/50 transition-all duration-300 group">
-                <div className="w-14 h-14 bg-blue-600/10 rounded-2xl flex items-center justify-center mb-8 border border-blue-500/20 group-hover:bg-blue-600 group-hover:shadow-lg group-hover:shadow-blue-600/40 transition-all">
-                  <service.icon className="w-7 h-7 text-blue-400 group-hover:text-white transition-colors" />
+              <div key={service.title} className="glass-card overflow-hidden group hover:border-blue-500/50 transition-all duration-300">
+                <div className="h-48 overflow-hidden relative">
+                   <img src={service.img} alt={service.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 opacity-60" />
+                   <div className="absolute inset-0 bg-blue-900/20 group-hover:bg-transparent transition-colors" />
+                   <div className="absolute bottom-4 left-6 w-12 h-12 bg-blue-600 rounded-xl flex items-center justify-center border border-white/20 shadow-lg">
+                      <service.icon className="w-6 h-6 text-white" />
+                   </div>
                 </div>
-                <h4 className="text-2xl font-black mb-4 text-white uppercase">{service.title}</h4>
-                <p className="text-slate-400 text-sm mb-6 leading-relaxed">{service.desc}</p>
-                <div className="h-px bg-white/5 mb-6" />
-                <ul className="space-y-3">
-                  {service.features.map(f => (
-                    <li key={f} className="text-[10px] uppercase font-bold tracking-widest text-slate-500 flex items-center gap-2">
-                       <span className="w-1 h-1 bg-blue-500 rounded-full" /> {f}
-                    </li>
-                  ))}
-                </ul>
+                <div className="p-10 pt-8">
+                  <h4 className="text-2xl font-black mb-4 text-white uppercase">{service.title}</h4>
+                  <p className="text-slate-400 text-sm mb-6 leading-relaxed">{service.desc}</p>
+                  <div className="h-px bg-white/5 mb-6" />
+                  <ul className="space-y-3">
+                    {service.features.map(f => (
+                      <li key={f} className="text-[10px] uppercase font-bold tracking-widest text-slate-500 flex items-center gap-2">
+                         <span className="w-1 h-1 bg-blue-500 rounded-full" /> {f}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </div>
             ))}
           </div>
