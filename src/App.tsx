@@ -118,13 +118,49 @@ const App: React.FC = () => {
               <ArrowUpRight className="w-3 h-3" />
             </a>
           </div>
-
           {/* Mobile Toggle */}
           <button className="md:hidden text-white" onClick={() => setIsMenuOpen(!isMenuOpen)}>
             {isMenuOpen ? <X /> : <Menu />}
           </button>
         </div>
       </nav>
+
+      {/* Mobile Menu Overlay */}
+      <motion.div
+        initial={false}
+        animate={isMenuOpen ? { opacity: 1, x: 0 } : { opacity: 0, x: '100%' }}
+        transition={{ type: 'spring', damping: 25, stiffness: 200 }}
+        className={cn(
+          "fixed inset-0 z-[150] bg-slate-950 md:hidden flex flex-col p-10",
+          !isMenuOpen && "pointer-events-none"
+        )}
+      >
+        <div className="flex justify-end mb-12">
+          <button onClick={() => setIsMenuOpen(false)} className="text-white">
+            <X size={32} />
+          </button>
+        </div>
+        <div className="flex flex-col gap-8">
+          {navLinks.map((link) => (
+            <a
+              key={link.name}
+              href={link.href}
+              onClick={() => setIsMenuOpen(false)}
+              className="text-4xl font-black text-white uppercase tracking-tighter"
+            >
+              {link.name}
+            </a>
+          ))}
+          <a
+            href="https://wa.me/526182758808"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-8 px-8 py-5 bg-blue-600 text-white font-black uppercase tracking-widest rounded-2xl text-center"
+          >
+            Consultoría Gratis
+          </a>
+        </div>
+      </motion.div>
 
       {/* Hero Section */}
       <section id="inicio" className="relative min-h-[90vh] flex items-center pt-32 pb-32 overflow-hidden">
@@ -266,26 +302,26 @@ const App: React.FC = () => {
               </video>
               <div className="absolute inset-0 bg-gradient-to-t from-slate-950/60 to-transparent pointer-events-none" />
               
-              <div className="absolute bottom-8 left-8 flex items-center justify-between right-8">
-                <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 bg-red-600 rounded-full flex items-center justify-center animate-pulse">
-                    <Play className="w-6 h-6 text-white fill-current" />
+              <div className="absolute bottom-4 left-4 right-4 md:bottom-8 md:left-8 md:right-8 flex items-center justify-between">
+                <div className="flex items-center gap-3 md:gap-4">
+                  <div className="w-10 h-10 md:w-12 md:h-12 bg-red-600 rounded-full flex items-center justify-center animate-pulse">
+                    <Play className="w-5 h-5 md:w-6 md:h-6 text-white fill-current" />
                   </div>
                   <div>
-                     <p className="text-white font-black uppercase text-xs tracking-widest">Respaldo Integral</p>
-                     <p className="text-slate-400 text-[10px] uppercase tracking-widest">Excelencia AXA</p>
+                     <p className="text-white font-black uppercase text-[10px] md:text-xs tracking-widest">Respaldo Integral</p>
+                     <p className="text-slate-400 text-[8px] md:text-[10px] uppercase tracking-widest">Excelencia AXA</p>
                   </div>
                 </div>
 
                 <button 
                   onClick={() => setIsMuted(!isMuted)}
-                  className="bg-white/10 hover:bg-white/20 backdrop-blur-md p-4 rounded-2xl border border-white/10 transition-all active:scale-95 group"
+                  className="bg-white/10 hover:bg-white/20 backdrop-blur-md p-3 md:p-4 rounded-xl md:rounded-2xl border border-white/10 transition-all active:scale-95 group"
                   title={isMuted ? "Activar Sonido" : "Silenciar"}
                 >
                   {isMuted ? (
-                    <VolumeX className="w-6 h-6 text-white group-hover:text-red-400" />
+                    <VolumeX className="w-5 h-5 md:w-6 md:h-6 text-white group-hover:text-red-400" />
                   ) : (
-                    <Volume2 className="w-6 h-6 text-white group-hover:text-green-400" />
+                    <Volume2 className="w-5 h-5 md:w-6 md:h-6 text-white group-hover:text-green-400" />
                   )}
                 </button>
               </div>
@@ -338,9 +374,9 @@ const App: React.FC = () => {
                   initial={{ opacity: 0, scale: 0.9 }}
                   whileInView={{ opacity: 1, scale: 1 }}
                   transition={{ delay: 0.2 }}
-                  className="rounded-3xl overflow-hidden border border-white/10 shadow-2xl relative group translate-y-8"
+                  className="rounded-3xl overflow-hidden border border-white/10 shadow-2xl relative group md:translate-y-8"
                 >
-                  <img src="/assets/foto_marisela_2.jpg" alt="Marisela Nevarez AXA" className="w-full h-[500px] object-cover group-hover:scale-110 transition-transform duration-700" />
+                  <img src="/assets/foto_marisela_2.jpg" alt="Marisela Nevarez AXA" className="w-full h-[400px] md:h-[500px] object-cover group-hover:scale-110 transition-transform duration-700" />
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-950 to-transparent opacity-60" />
                 </motion.div>
               </div>
