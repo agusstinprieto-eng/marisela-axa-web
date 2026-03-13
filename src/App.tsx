@@ -17,7 +17,9 @@ import {
   ArrowUpRight,
   CheckCircle2,
   Play,
-  Globe
+  Globe,
+  Volume2,
+  VolumeX
 } from 'lucide-react';
 import { cn } from './lib/utils';
 
@@ -32,6 +34,7 @@ const App: React.FC = () => {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [isMuted, setIsMuted] = useState(true);
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 50);
@@ -254,7 +257,7 @@ const App: React.FC = () => {
             >
               <video 
                 autoPlay 
-                muted 
+                muted={isMuted}
                 loop 
                 playsInline
                 className="w-full h-full object-cover"
@@ -263,14 +266,28 @@ const App: React.FC = () => {
               </video>
               <div className="absolute inset-0 bg-gradient-to-t from-slate-950/60 to-transparent pointer-events-none" />
               
-              <div className="absolute bottom-8 left-8 flex items-center gap-4">
-                <div className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center animate-pulse">
-                  <Play className="w-6 h-6 text-white fill-current" />
+              <div className="absolute bottom-8 left-8 flex items-center justify-between right-8">
+                <div className="flex items-center gap-4">
+                  <div className="w-12 h-12 bg-red-600 rounded-full flex items-center justify-center animate-pulse">
+                    <Play className="w-6 h-6 text-white fill-current" />
+                  </div>
+                  <div>
+                     <p className="text-white font-black uppercase text-xs tracking-widest">Respaldo Integral</p>
+                     <p className="text-slate-400 text-[10px] uppercase tracking-widest">Excelencia AXA</p>
+                  </div>
                 </div>
-                <div>
-                   <p className="text-white font-black uppercase text-xs tracking-widest">Respaldo Integral</p>
-                   <p className="text-slate-400 text-[10px] uppercase tracking-widest">Excelencia AXA</p>
-                </div>
+
+                <button 
+                  onClick={() => setIsMuted(!isMuted)}
+                  className="bg-white/10 hover:bg-white/20 backdrop-blur-md p-4 rounded-2xl border border-white/10 transition-all active:scale-95 group"
+                  title={isMuted ? "Activar Sonido" : "Silenciar"}
+                >
+                  {isMuted ? (
+                    <VolumeX className="w-6 h-6 text-white group-hover:text-red-400" />
+                  ) : (
+                    <Volume2 className="w-6 h-6 text-white group-hover:text-green-400" />
+                  )}
+                </button>
               </div>
             </motion.div>
           </div>
@@ -280,7 +297,9 @@ const App: React.FC = () => {
       {/* VICOM Branding & Experience Section */}
       <section id="vicom" className="py-32 relative">
         <div className="container mx-auto px-6">
-          <div className="flex flex-col items-center gap-20">
+          <div className="flex flex-col items-center gap-32">
+            
+            {/* 1. Centered Brand Card */}
             <div className="w-full max-w-4xl">
               <div className="flex flex-col items-center text-center mb-16">
                 <h2 className="text-4xl lg:text-6xl font-black text-white mb-8 uppercase leading-tight">
@@ -290,7 +309,7 @@ const App: React.FC = () => {
                 <div className="w-24 h-1 bg-red-600 mb-8" />
               </div>
               
-              <div className="relative group max-w-2xl mx-auto">
+              <div className="relative group max-w-3xl mx-auto">
                 <div className="absolute -inset-4 bg-red-600/20 rounded-[40px] blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 <div className="relative glass-card p-12 aspect-square md:aspect-video flex flex-col items-center justify-center text-center overflow-hidden">
                   <div className="mb-8 p-6 bg-red-600 rounded-3xl rotate-12 group-hover:rotate-0 transition-transform duration-500">
@@ -304,62 +323,71 @@ const App: React.FC = () => {
               </div>
             </div>
 
+            {/* 2. Real Photos Grid */}
             <div className="w-full max-w-5xl">
-              {/* Actual Photos of Marisela */}
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <motion.div 
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  className="rounded-3xl overflow-hidden border border-white/10 shadow-2xl skew-y-3 hover:skew-y-0 transition-transform duration-700"
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  className="rounded-3xl overflow-hidden border border-white/10 shadow-2xl relative group"
                 >
-                  <img src="/assets/foto_marisela_1.jpg" alt="Marisela Nevarez Asesoría" className="w-full h-full object-cover" />
+                  <img src="/assets/foto_marisela_1.jpg" alt="Marisela Nevarez Asesoría" className="w-full h-[500px] object-cover group-hover:scale-110 transition-transform duration-700" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950 to-transparent opacity-60" />
                 </motion.div>
                 <motion.div 
-                  initial={{ opacity: 0, x: 20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
                   transition={{ delay: 0.2 }}
-                  className="rounded-3xl overflow-hidden border border-white/10 shadow-2xl -skew-y-3 hover:skew-y-0 transition-transform duration-700 translate-y-12"
+                  className="rounded-3xl overflow-hidden border border-white/10 shadow-2xl relative group translate-y-8"
                 >
-                  <img src="/assets/foto_marisela_2.jpg" alt="Marisela Nevarez AXA" className="w-full h-full object-cover" />
+                  <img src="/assets/foto_marisela_2.jpg" alt="Marisela Nevarez AXA" className="w-full h-[500px] object-cover group-hover:scale-110 transition-transform duration-700" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950 to-transparent opacity-60" />
                 </motion.div>
-              </div>
-              
-              {/* Background Glow */}
-              <div className="absolute -z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-red-600/10 rounded-full blur-[120px]" />
-            </div>
-          </div>
-        </div>
-      </section>
-                </p>
-                <div className="mt-8 flex gap-2">
-                  <div className="w-1 h-1 bg-blue-500 rounded-full" />
-                  <div className="w-8 h-1 bg-blue-500 rounded-full" />
-                  <div className="w-1 h-1 bg-blue-500 rounded-full" />
-                </div>
               </div>
             </div>
 
-            <div>
-              <h2 className="text-sm font-black text-blue-500 tracking-[0.3em] mb-4">FILOSOFÍA DE MARCA</h2>
-              <h3 className="text-4xl lg:text-5xl font-outfit font-black text-white mb-8">EL PODER DE <br /> TRANSFORMAR EL FUTURO</h3>
-              <p className="text-slate-400 text-lg mb-8 leading-relaxed">
-                El icono de VICOM representa el vuelo de un ave hacia una estrella. Es el símbolo del crecimiento, la protección y las aspiraciones de cada cliente que confía en nosotros.
-              </p>
-              <ul className="space-y-4">
-                {[
-                  'Capacitación continua de asesores expertos.',
-                  'Venta ética de seguros de alta calidad.',
-                  'Atención personalizada con respaldo de AXA.',
-                  'Compromiso total con la tranquilidad familiar.'
-                ].map((item) => (
-                  <li key={item} className="flex items-start gap-3 group">
-                    <div className="mt-1 w-5 h-5 rounded-full bg-blue-500/20 border border-blue-500/30 flex items-center justify-center flex-shrink-0 group-hover:bg-blue-500 transition-colors">
-                      <CheckCircle2 className="w-3 h-3 text-blue-400 group-hover:text-white" />
-                    </div>
-                    <span className="text-slate-300 group-hover:text-white transition-colors">{item}</span>
-                  </li>
-                ))}
-              </ul>
+            {/* 3. Philosophy Section */}
+            <div className="w-full max-w-6xl grid md:grid-cols-2 gap-20 items-center mt-20">
+              <div>
+                <h2 className="text-sm font-black text-red-600 tracking-[0.3em] mb-4 uppercase">Filosofía de Marca</h2>
+                <h3 className="text-4xl lg:text-5xl font-outfit font-black text-white mb-8 italic">EL PODER DE <br /> TRANSFORMAR EL FUTURO</h3>
+                <p className="text-slate-400 text-lg mb-8 leading-relaxed">
+                  El icono de VICOM representa el vuelo de un ave hacia una estrella. Es el símbolo del crecimiento, la protección y las aspiraciones de cada cliente que confía en nosotros bajo el respaldo de AXA.
+                </p>
+                <ul className="space-y-4">
+                  {[
+                    'Capacitación continua de asesores expertos.',
+                    'Venta ética de seguros de alta calidad.',
+                    'Atención personalizada con respaldo de AXA.',
+                    'Compromiso total con la tranquilidad familiar.'
+                  ].map((item) => (
+                    <li key={item} className="flex items-start gap-4 group">
+                      <div className="mt-1 w-6 h-6 rounded-full bg-red-600/20 border border-red-600/30 flex items-center justify-center flex-shrink-0 group-hover:bg-red-600 transition-colors">
+                        <CheckCircle2 className="w-3 h-3 text-red-400 group-hover:text-white" />
+                      </div>
+                      <span className="text-slate-300 group-hover:text-white transition-colors font-medium">{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div className="relative">
+                <div className="absolute -inset-4 bg-red-600/20 rounded-[40px] blur-3xl opacity-50" />
+                <div className="relative glass-card p-12 border-red-600/20">
+                   <div className="flex items-center gap-6 mb-8">
+                      <div className="w-16 h-16 bg-red-600 rounded-2xl flex items-center justify-center shadow-lg shadow-red-600/20">
+                         <Award className="w-8 h-8 text-white" />
+                      </div>
+                      <div>
+                         <p className="text-white font-black text-xl">25 AÑOS</p>
+                         <p className="text-slate-500 uppercase tracking-widest text-[10px]">Trayectoria AXA</p>
+                      </div>
+                   </div>
+                   <p className="text-slate-300 italic text-sm leading-relaxed mb-6">
+                     "Nuestra misión es simple pero poderosa: Estar ahí cuando más nos necesites, con la solución exacta y el trato humano que mereces."
+                   </p>
+                   <p className="text-white font-black uppercase tracking-widest text-xs">— MARISELA NEVAREZ</p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
