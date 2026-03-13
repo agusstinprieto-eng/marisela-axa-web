@@ -123,22 +123,13 @@ const App: React.FC = () => {
 
       {/* Hero Section */}
       <section id="inicio" className="relative min-h-[90vh] flex items-center pt-32 pb-32 overflow-hidden">
-        {/* Real Hyperrealistic Video/Background */}
+        {/* Real Hyperrealistic Background */}
         <div className="absolute inset-0 z-0">
-          <video 
-            autoPlay 
-            muted 
-            loop 
-            playsInline
-            className="w-full h-full object-cover opacity-50 scale-105"
-          >
-            <source src="/assets/video_corporate_3.mp4" type="video/mp4" />
-            <img 
-              src="/assets/hero_family.png" 
-              alt="Family Protection" 
-              className="w-full h-full object-cover"
-            />
-          </video>
+          <img 
+            src="/assets/hero_family.png" 
+            alt="Family Protection" 
+            className="w-full h-full object-cover opacity-60 scale-105"
+          />
           <div className="img-overlay-dark" />
         </div>
 
@@ -239,6 +230,47 @@ const App: React.FC = () => {
                 <p className="text-[10px] uppercase tracking-widest text-slate-500 font-bold">{stat.label}</p>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Video / Corporate Presence Section */}
+      <section className="py-32 relative overflow-hidden bg-slate-900/30">
+        <div className="container mx-auto px-6">
+          <div className="max-w-5xl mx-auto">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl lg:text-5xl font-black text-white mb-6 uppercase tracking-tight">Presencia Corporativa</h2>
+              <p className="text-slate-400 max-w-2xl mx-auto">Conoce más sobre el respaldo y la solidez que Marisela Nevarez y AXA brindan a cada uno de sus clientes.</p>
+            </div>
+            
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+              className="relative aspect-video glass-card overflow-hidden group shadow-2xl shadow-blue-600/10 border border-white/10"
+            >
+              <video 
+                autoPlay 
+                muted 
+                loop 
+                playsInline
+                className="w-full h-full object-cover"
+              >
+                <source src="/assets/video_corporate_3.mp4" type="video/mp4" />
+              </video>
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/60 to-transparent pointer-events-none" />
+              
+              <div className="absolute bottom-8 left-8 flex items-center gap-4">
+                <div className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center animate-pulse">
+                  <Play className="w-6 h-6 text-white fill-current" />
+                </div>
+                <div>
+                   <p className="text-white font-black uppercase text-xs tracking-widest">Respaldo Integral</p>
+                   <p className="text-slate-400 text-[10px] uppercase tracking-widest">Excelencia AXA</p>
+                </div>
+              </div>
+            </motion.div>
           </div>
         </div>
       </section>
