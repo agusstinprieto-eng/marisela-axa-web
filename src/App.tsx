@@ -15,7 +15,8 @@ import {
   Star,
   Activity,
   ArrowUpRight,
-  CheckCircle2
+  CheckCircle2,
+  Play
 } from 'lucide-react';
 import { cn } from './lib/utils';
 
