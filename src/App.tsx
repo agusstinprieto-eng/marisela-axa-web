@@ -280,8 +280,31 @@ const App: React.FC = () => {
       {/* VICOM Branding & Experience Section */}
       <section id="vicom" className="py-32 relative">
         <div className="container mx-auto px-6">
-          <div className="grid lg:grid-cols-2 gap-20 items-center">
-            <div className="relative order-2 lg:order-1">
+          <div className="flex flex-col items-center gap-20">
+            <div className="w-full max-w-4xl">
+              <div className="flex flex-col items-center text-center mb-16">
+                <h2 className="text-4xl lg:text-6xl font-black text-white mb-8 uppercase leading-tight">
+                  EL PODER DE <br />
+                  <span className="text-red-600">BECOME (VICOM)</span>
+                </h2>
+                <div className="w-24 h-1 bg-red-600 mb-8" />
+              </div>
+              
+              <div className="relative group max-w-2xl mx-auto">
+                <div className="absolute -inset-4 bg-red-600/20 rounded-[40px] blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <div className="relative glass-card p-12 aspect-square md:aspect-video flex flex-col items-center justify-center text-center overflow-hidden">
+                  <div className="mb-8 p-6 bg-red-600 rounded-3xl rotate-12 group-hover:rotate-0 transition-transform duration-500">
+                    <Shield className="w-16 h-16 text-white" />
+                  </div>
+                  <h3 className="text-4xl font-black mb-4">¿QUÉ ES VICOM?</h3>
+                  <p className="text-slate-400 text-lg leading-relaxed italic max-w-xl">
+                    "Nuestro nombre proviene del inglés 'BECOME', que significa convertirse o transformarse. Representamos el profesionalismo, experiencia y confianza que necesitas para asegurar tu futuro."
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="w-full max-w-5xl">
               {/* Actual Photos of Marisela */}
               <div className="grid grid-cols-2 gap-4">
                 <motion.div 
@@ -302,22 +325,11 @@ const App: React.FC = () => {
               </div>
               
               {/* Background Glow */}
-              <div className="absolute -z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] bg-red-600/20 rounded-full blur-[100px]" />
+              <div className="absolute -z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-red-600/10 rounded-full blur-[120px]" />
             </div>
-
-            <div className="order-1 lg:order-2">
-              <h2 className="text-4xl lg:text-5xl font-black text-white mb-8 uppercase leading-tight">
-                EL PODER DE <br />
-                <span className="text-red-600">BECOME (VICOM)</span>
-              </h2>
-              <div className="absolute -inset-4 bg-blue-600/20 rounded-[40px] blur-2xl" />
-              <div className="relative glass-card p-12 aspect-square flex flex-col items-center justify-center text-center overflow-hidden">
-                <div className="mb-8 p-6 bg-blue-600 rounded-3xl rotate-12 group-hover:rotate-0 transition-transform duration-500">
-                  <Shield className="w-16 h-16 text-white" />
-                </div>
-                <h3 className="text-4xl font-black mb-4">¿QUÉ ES VICOM?</h3>
-                <p className="text-slate-400 leading-relaxed italic">
-                  "Nuestro nombre proviene del inglés 'BECOME', que significa convertirse o transformarse. Representamos el profesionalismo, experiencia y confianza."
+          </div>
+        </div>
+      </section>
                 </p>
                 <div className="mt-8 flex gap-2">
                   <div className="w-1 h-1 bg-blue-500 rounded-full" />
