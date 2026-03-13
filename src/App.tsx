@@ -484,13 +484,13 @@ const App: React.FC = () => {
 
       {/* Footer */}
       <footer className="py-12 border-t border-white/5">
-        <div className="container mx-auto px-6 flex flex-col md:row items-center justify-between gap-8">
-          <div className="flex flex-col items-center md:items-start gap-2">
+        <div className="container mx-auto px-6 flex flex-col items-center justify-center gap-10">
+          <div className="flex flex-col items-center gap-4">
             <div className="flex items-center gap-3">
-              <Shield className="w-6 h-6 text-blue-500" />
-              <span className="text-lg font-orbitron font-black text-white">VICOM</span>
+              <Shield className="w-8 h-8 text-blue-500" />
+              <span className="text-2xl font-orbitron font-black text-white tracking-widest">VICOM</span>
             </div>
-            <p className="text-slate-500 text-[10px] uppercase tracking-widest">© 2026 Marisela Nevarez. Todos los derechos reservados.</p>
+            <p className="text-slate-500 text-[10px] uppercase tracking-[0.4em] font-medium">© 2026 Marisela Nevarez. Todos los derechos reservados.</p>
           </div>
           
           <div className="flex items-center gap-6">
