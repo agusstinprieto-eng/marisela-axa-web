@@ -82,13 +82,13 @@ const App: React.FC = () => {
         <div className="container mx-auto px-6 flex items-center justify-between">
           <div className="flex items-center gap-4 group">
             <div className="flex flex-col items-center">
-              <div className="bg-white p-1 rounded-sm shadow-sm">
-                <img src="/assets/logo_axa.png" alt="AXA Logo" className="h-6 w-auto" />
+              <div className="bg-white p-1.5 rounded-sm shadow-md">
+                <img src="/assets/logo_axa_full.jpg" alt="AXA Logo" className="h-10 w-auto" />
               </div>
             </div>
-            <div className="w-px h-8 bg-white/20 hidden sm:block" />
+            <div className="w-px h-10 bg-white/20 hidden sm:block" />
             <div className="flex flex-col">
-              <span className="text-xl font-orbitron font-black tracking-tighter text-white">VICOM</span>
+              <span className="text-xl font-orbitron font-black tracking-tighter text-red-600">VICOM</span>
               <span className="text-[10px] uppercase tracking-[0.3em] text-blue-400 font-bold leading-none">Seguros & Finanzas</span>
             </div>
           </div>
@@ -277,11 +277,39 @@ const App: React.FC = () => {
         </div>
       </section>
 
-      {/* VICOM Branding Section */}
+      {/* VICOM Branding & Experience Section */}
       <section id="vicom" className="py-32 relative">
         <div className="container mx-auto px-6">
           <div className="grid lg:grid-cols-2 gap-20 items-center">
-            <div className="relative">
+            <div className="relative order-2 lg:order-1">
+              {/* Actual Photos of Marisela */}
+              <div className="grid grid-cols-2 gap-4">
+                <motion.div 
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  className="rounded-3xl overflow-hidden border border-white/10 shadow-2xl skew-y-3 hover:skew-y-0 transition-transform duration-700"
+                >
+                  <img src="/assets/foto_marisela_1.jpg" alt="Marisela Nevarez Asesoría" className="w-full h-full object-cover" />
+                </motion.div>
+                <motion.div 
+                  initial={{ opacity: 0, x: 20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.2 }}
+                  className="rounded-3xl overflow-hidden border border-white/10 shadow-2xl -skew-y-3 hover:skew-y-0 transition-transform duration-700 translate-y-12"
+                >
+                  <img src="/assets/foto_marisela_2.jpg" alt="Marisela Nevarez AXA" className="w-full h-full object-cover" />
+                </motion.div>
+              </div>
+              
+              {/* Background Glow */}
+              <div className="absolute -z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] bg-red-600/20 rounded-full blur-[100px]" />
+            </div>
+
+            <div className="order-1 lg:order-2">
+              <h2 className="text-4xl lg:text-5xl font-black text-white mb-8 uppercase leading-tight">
+                EL PODER DE <br />
+                <span className="text-red-600">BECOME (VICOM)</span>
+              </h2>
               <div className="absolute -inset-4 bg-blue-600/20 rounded-[40px] blur-2xl" />
               <div className="relative glass-card p-12 aspect-square flex flex-col items-center justify-center text-center overflow-hidden">
                 <div className="mb-8 p-6 bg-blue-600 rounded-3xl rotate-12 group-hover:rotate-0 transition-transform duration-500">
@@ -488,8 +516,8 @@ const App: React.FC = () => {
         <div className="container mx-auto px-6 flex flex-col items-center justify-center gap-10">
           <div className="flex flex-col items-center gap-4">
             <div className="flex items-center gap-3">
-              <Shield className="w-8 h-8 text-blue-500" />
-              <span className="text-2xl font-orbitron font-black text-white tracking-widest">VICOM</span>
+              <Shield className="w-8 h-8 text-red-600" />
+              <span className="text-2xl font-orbitron font-black text-red-600 tracking-widest">VICOM</span>
             </div>
             <p className="text-slate-500 text-[10px] uppercase tracking-[0.4em] font-medium">© 2026 Marisela Nevarez. Todos los derechos reservados.</p>
           </div>
