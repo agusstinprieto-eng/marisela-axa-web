@@ -16,7 +16,8 @@ import {
   Activity,
   ArrowUpRight,
   CheckCircle2,
-  Play
+  Play,
+  Globe
 } from 'lucide-react';
 import { cn } from './lib/utils';
 
@@ -494,11 +495,23 @@ const App: React.FC = () => {
           </div>
           
           <div className="flex items-center gap-6">
-            <a href="#" className="p-3 bg-white/5 rounded-xl hover:bg-blue-600 transition-all group">
+            <a 
+              href="https://wa.me/526182758808" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="p-3 bg-white/5 rounded-xl hover:bg-blue-600 transition-all group"
+              title="Chat con Marisela"
+            >
               <MessageCircle className="w-5 h-5 text-white" />
             </a>
-            <a href="#" className="p-3 bg-white/5 rounded-xl hover:bg-blue-600 transition-all group">
-              <Heart className="w-5 h-5 text-white" />
+            <a 
+              href="https://axa.mx" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="p-3 bg-white/5 rounded-xl hover:bg-blue-600 transition-all group"
+              title="Sitio Oficial AXA"
+            >
+              <Globe className="w-5 h-5 text-white" />
             </a>
           </div>
         </div>
